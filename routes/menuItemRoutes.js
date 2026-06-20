@@ -1,13 +1,13 @@
 const express = require("express");
-const router = express();
+const router = express.Router();
 
-const menuItem = require('./../models/menuItem');
+const MenuItem = require('./../models/MenuItem');
 
-router.post("/", async(res, req) => {
+router.post("/", async(req, res) => {
     try{
         const data = req.body;
-        const newPerson = new Person(data);
-        const response =  await newPerson.save();
+        const newMenu = new MenuItem(data);
+        const response =  await newMenu.save();
         console.log('data saved');
         res.status(200).json(response);
     }
@@ -17,11 +17,11 @@ router.post("/", async(res, req) => {
     }
 });
 
-router.post("/", async(res, req) => {
+router.post("/", async(req, res) => {
     try{
         const data = req.body;
-        const newPerson = new Person(data);
-        const response =  await newPerson.save();
+        const newMenu = new MenuItem(data);
+        const response =  await newMenu.save();
         console.log('data saved');
         res.status(200).json(response);
     }

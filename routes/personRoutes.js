@@ -1,16 +1,14 @@
 const express = require("express");
-const router = express();
-
-const PORT = 3000;
+const router = express.Router();
 
 const Person = require('./../models/Person');
 
-router.use('/', async(res, req) => {
+router.post('/', async(req, res) => {
     try{
         const data = req.body
         const newPerson = new Person(data);
         const response = await newPerson.save();
-        res.status(200).json('response');
+        res.status(200).json(response);
     }catch(err){
         console.log(err);
         res.status(500).json({error: 'Internal Server Error'});
@@ -18,7 +16,7 @@ router.use('/', async(res, req) => {
     }
 })
 
-router.post("/", async(res, req) => {
+router.post("/", async(req, res) => {
     try{
         const data = req.body;
         const newPerson = new Person(data);
@@ -30,11 +28,6 @@ router.post("/", async(res, req) => {
         console.log(err);
         res.status(500).json({error: 'Internal Server Error'})
     }
-});
-
-
-router.listen(3000, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 module.exports = router;
